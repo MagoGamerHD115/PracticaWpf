@@ -1,0 +1,85 @@
+﻿<Window x:Class="Login_interactivo.Aplicacion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Login_interactivo"
+        mc:Ignorable="d"
+        Title="Aplicacion" Height="450" Width="800"
+        WindowState="Maximized">
+
+    <Window.Resources>
+        <LinearGradientBrush x:Key="BackgroundGradient" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#FF1A1A2E" Offset="0"/>
+            <GradientStop Color="#FF16213E" Offset="0.5"/>
+            <GradientStop Color="#FF3030C8" Offset="1"/>
+        </LinearGradientBrush>
+
+        <!-- Definir DropShadowEffect -->
+        <DropShadowEffect x:Key="DropShadowEffect" ShadowDepth="5" Direction="320" Color="Black" Opacity="0.3" BlurRadius="15"/>
+
+        <!-- Animación para mover el texto de izquierda a derecha -->
+        <Storyboard x:Key="TextAnimation">
+            <!-- Desplazamiento en el eje X -->
+            <DoubleAnimation
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                From="-500" To="0" Duration="0:0:2" AutoReverse="True" RepeatBehavior="Forever" />
+            <!-- Animación de opacidad (desvanecimiento) -->
+            <DoubleAnimation
+                Storyboard.TargetProperty="Opacity"
+                From="0" To="1" Duration="0:0:2" AutoReverse="True" RepeatBehavior="Forever" />
+        </Storyboard>
+    </Window.Resources>
+
+    <Window.Background>
+        <StaticResource ResourceKey="BackgroundGradient"/>
+    </Window.Background>
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+             <Label Content="Hola Mundo" FontSize="72" Height="99" Width="408" 
+                   HorizontalAlignment="Center" FontFamily="Zilla Slab SemiBold" Foreground="White">
+                <Label.RenderTransform>
+                     <TranslateTransform />
+                </Label.RenderTransform>
+            </Label>
+        </StackPanel>
+        <StackPanel>
+            <Button Content="Cerrar app" Click="Button_Click_1"
+                Margin="0,10,0,0" 
+                Foreground="White" 
+                Width="136" 
+                Height="30"
+                FontSize="16"
+                HorizontalAlignment="Center" 
+                FontFamily="Segoe UI" Cursor="Hand">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="15" BorderBrush="#FF244F94" BorderThickness="2">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#FF244F94" Offset="0" />
+                                    <GradientStop Color="#FF122C59" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Image x:Name="Sonido" Source="/volumen.png" Width="50" Height="50" Cursor="Hand" MouseDown="Sonido_Click" HorizontalAlignment="Left">
+                <Image.Effect>
+                    <DropShadowEffect/>
+                </Image.Effect>
+            </Image>
+        </StackPanel>
+    </Grid>
+
+    <!-- Al cargar la ventana, iniciamos la animación -->
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource TextAnimation}" />
+        </EventTrigger>
+    </Window.Triggers>
+
+</Window>

@@ -162,7 +162,7 @@
                 Effect="{StaticResource DropShadowEffect}"
                 >
                 <StackPanel Margin="30,30,30,6">
-                    <TextBlock Text="Inicio De Sesion" 
+                    <TextBlock Text="Inicio De Sesion K" 
                         FontSize="28" 
                         Foreground="White" 
                         HorizontalAlignment="Center" 

@@ -14,7 +14,7 @@ namespace Login_interactivo
         public MainWindow()
         {
             InitializeComponent();
-            cargarmusica();
+            Cargarmusica();
             this.Closing += Window_Closing;   
         }
 
@@ -23,7 +23,7 @@ namespace Login_interactivo
             mediaPlayer.Stop();   
         }
 
-        private void cargarmusica()
+        private void Cargarmusica()
         {
             mediaPlayer = new MediaPlayer();
             mediaPlayer.Open(new Uri("music1.mp3", UriKind.Relative));   
@@ -34,17 +34,16 @@ namespace Login_interactivo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            validacion();
+            Validacion();
         }
 
-        private void validacion()
+        private void Validacion()
         {
             Aplicacion aplicacion = new Aplicacion();
             if (!string.IsNullOrWhiteSpace(Email.Text) && !string.IsNullOrWhiteSpace(Contra.Text))
             {
                 if (Email.Text == "admin" && Contra.Text == "1234")
                 {
-                    MessageBox.Show("¡Usuario exitoso!", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
                     aplicacion.Show();
                     this.Close();   
                 }
